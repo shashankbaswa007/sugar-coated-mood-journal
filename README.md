@@ -50,3 +50,4 @@ Summary of the Project
 Sugar Mood Lifter is a mental wellness companion in the form of a website that smartly suggests sweet desserts, memes, and thought-provoking journaling experiences depending on your mood. Merging psychology with AI and a dash of humor, it seeks to improve emotional well-being in a fun and interactive manner.
 
 # sugar-coated-
+# sugar-coated-mood-journal
