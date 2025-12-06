@@ -2,6 +2,7 @@
   "name": "sugar-coated-mood-journal",
   "version": "1.0.0",
   "private": true,
+  "proxy": "http://localhost:4001",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -9,20 +10,28 @@
     "@mui/material": "^5.17.1",
     "@types/node": "^22.14.0",
     "axios": "^1.8.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2",
     "framer-motion": "^11.18.2",
+    "node-fetch": "^2.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.30.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.5.0",
     "typescript": "^4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:api": "node serverless/mockAllUsers.js",
+    "start:gemini-proxy": "node serverless/geminiProxy.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "lint": "eslint './src/**/*.{ts,tsx,js,jsx}' --max-warnings=0",
+  "format": "prettier --write './**/*.{ts,tsx,js,jsx,json,md,css,scss}'",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -42,7 +51,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.3.20",
-    "@types/react-dom": "^18.3.6"
+    "@types/react-dom": "^18.3.7",
+    "@typescript-eslint/eslint-plugin": "^8.47.0",
+    "@typescript-eslint/parser": "^8.47.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "prettier": "^3.0.0"
   }
 }

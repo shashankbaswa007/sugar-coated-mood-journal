@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { MoodContext } from '../context/MoodContext';
+import { Mood } from '../types';
 import { useNavigate } from 'react-router-dom';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -28,15 +29,15 @@ interface HomeProps {
   setIsDarkMode: (value: boolean) => void;
 }
 
-interface Mood {
-  id: string;
+interface MoodItem {
+  id: Mood;
   icon: React.ReactNode;
   label: string;
   color: string;
   description: string;
 }
 
-const moods: Mood[] = [
+const moods: MoodItem[] = [
   { 
     id: 'happy', 
     icon: <EmojiEmotionsIcon />, 
@@ -176,7 +177,7 @@ const Home: React.FC<HomeProps> = ({ isDarkMode, setIsDarkMode }) => {
             whileHover={{ rotate: 180 }}
             transition={{ duration: 0.5 }}
           >
-            <IconButton onClick={() => setIsDarkMode(!isDarkMode)} color="inherit">
+            <IconButton aria-label="Toggle dark mode" onClick={() => setIsDarkMode(!isDarkMode)} color="inherit">
               {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
           </motion.div>
@@ -192,7 +193,7 @@ const Home: React.FC<HomeProps> = ({ isDarkMode, setIsDarkMode }) => {
             component="h1" 
             sx={{ 
               fontFamily: "'Comic Sans MS', cursive",
-              color: '#FF69B4',
+              color: theme.palette.primary.main,
               textAlign: 'center',
               mb: 4,
               textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
@@ -200,6 +201,11 @@ const Home: React.FC<HomeProps> = ({ isDarkMode, setIsDarkMode }) => {
           >
             Sugar-Coated Mood Journal 🍫✨
           </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+            <Button variant="text" onClick={() => navigate('/dashboard')}>
+              View Mood Dashboard 📊
+            </Button>
+          </Box>
         </motion.div>
 
         <motion.div
@@ -228,19 +234,40 @@ const Home: React.FC<HomeProps> = ({ isDarkMode, setIsDarkMode }) => {
                       p: 3,
                       textAlign: 'center',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      transform: currentMood === mood.id ? 'translateY(-8px) scale(1.05)' : 'translateY(0)',
                       '&:hover': {
-                        transform: 'scale(1.05)',
-                        boxShadow: '0 12px 20px rgba(0,0,0,0.15)',
+                        transform: 'translateY(-12px) scale(1.08)',
+                        boxShadow: `0 20px 40px ${mood.color}66`,
                       },
                       bgcolor: currentMood === mood.id ? mood.color : 'background.paper',
                       color: currentMood === mood.id ? 'white' : 'text.primary',
-                      border: currentMood === mood.id ? `3px solid ${mood.color}` : '3px solid transparent',
-                      borderRadius: '20px',
+                      border: `3px solid ${mood.color}`,
+                      borderRadius: '24px',
                       overflow: 'hidden',
                       position: 'relative',
+                      background: currentMood === mood.id 
+                        ? `linear-gradient(135deg, ${mood.color} 0%, ${mood.color}dd 100%)`
+                        : theme.palette.mode === 'dark'
+                        ? 'rgba(26, 26, 26, 0.8)'
+                        : 'rgba(255, 255, 255, 0.9)',
+                      backdropFilter: 'blur(10px)',
+                      boxShadow: currentMood === mood.id 
+                        ? `0 12px 32px ${mood.color}88`
+                        : theme.palette.mode === 'dark'
+                        ? '0 8px 24px rgba(0, 0, 0, 0.4)'
+                        : '0 8px 24px rgba(0, 0, 0, 0.1)',
                     }}
                     onClick={() => setCurrentMood(mood.id)}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={currentMood === mood.id}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        setCurrentMood(mood.id);
+                        e.preventDefault();
+                      }
+                    }}
                   >
                     <motion.div
                       initial={{ scale: 1 }}
@@ -273,11 +300,13 @@ const Home: React.FC<HomeProps> = ({ isDarkMode, setIsDarkMode }) => {
               mt: 4, 
               maxWidth: 600, 
               width: '100%',
-              borderRadius: '20px',
+              borderRadius: '24px',
               background: isDarkMode 
-                ? 'linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%)' 
-                : 'linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%)',
-              border: `2px solid ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main}`,
+                ? 'linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(42, 42, 42, 0.95) 100%)' 
+                : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.95) 100%)',
+              border: `3px solid ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main}`,
+              backdropFilter: 'blur(20px)',
+              boxShadow: `0 12px 40px ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main}44`,
             }}>
               <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                 Recommended Treats for your mood: 🍪
@@ -319,7 +348,16 @@ const Home: React.FC<HomeProps> = ({ isDarkMode, setIsDarkMode }) => {
                     width: '100%',
                     py: 1.5,
                     fontSize: '1.1rem',
-                    background: `linear-gradient(45deg, ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
+                    fontWeight: 700,
+                    background: `linear-gradient(135deg, ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                    boxShadow: `0 8px 24px ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main}66`,
+                    borderRadius: '16px',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    '&:hover': {
+                      background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main} 100%)`,
+                      transform: 'translateY(-2px)',
+                      boxShadow: `0 12px 32px ${moods.find(m => m.id === currentMood)?.color || theme.palette.primary.main}88`,
+                    },
                   }}
                   onClick={() => navigate('/journal')}
                 >

@@ -1,0 +1,27 @@
+{
+  "happy": {
+    "imageUrl": "https://i.imgflip.com/1g8my4.jpg",
+    "caption": "When you're feeling happy and vibing",
+    "description": "Drake nodding in approval"
+  },
+  "sad": {
+    "imageUrl": "https://i.imgflip.com/1bij.jpg",
+    "caption": "When you're feeling down",
+    "description": "Drake looking disappointed"
+  },
+  "stressed": {
+    "imageUrl": "https://i.imgflip.com/30b1gx.jpg",
+    "caption": "Me trying to handle stress",
+    "description": "Drake looking overwhelmed"
+  },
+  "energetic": {
+    "imageUrl": "https://i.imgflip.com/1g8my4.jpg",
+    "caption": "When you're full of energy",
+    "description": "Drake dancing"
+  },
+  "sleepy": {
+    "imageUrl": "https://i.imgflip.com/1bij.jpg",
+    "caption": "Me trying to stay awake",
+    "description": "Drake looking sleepy"
+  }
+}

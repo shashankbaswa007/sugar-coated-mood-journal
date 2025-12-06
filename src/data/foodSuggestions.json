@@ -1,0 +1,117 @@
+{
+  "happy": [
+    {
+      "name": "Gulab Jamun",
+      "description": "Sweet, soft, and absolutely delightful — a joyful classic.",
+      "recipe": "1. Mix khoya and flour\n2. Make small balls\n3. Deep fry until golden\n4. Soak in sugar syrup",
+      "orderLink": "https://www.swiggy.com/search?query=gulab+jamun",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+gulab+jamun"
+    },
+    {
+      "name": "Rasmalai",
+      "description": "Creamy, fragrant paneer soaked in sweetened milk — celebratory and light.",
+      "recipe": "1. Make soft paneer balls\n2. Cook in milk\n3. Add cardamom and saffron\n4. Chill and serve",
+      "orderLink": "https://www.swiggy.com/search?query=rasmalai",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+rasmalai"
+    },
+    {
+      "name": "Mango Kulfi",
+      "description": "Silky mango frozen dessert — summery and joyful.",
+      "recipe": "1. Blend mango pulp with condensed milk and cream\n2. Freeze in molds\n3. Serve chilled",
+      "orderLink": "https://www.swiggy.com/search?query=mango+kulfi",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+mango+kulfi"
+    }
+  ],
+  "sad": [
+    {
+      "name": "Chocolate Brownie",
+      "description": "Rich and fudgy — deep chocolate comfort food.",
+      "recipe": "1. Melt dark chocolate\n2. Mix with butter and sugar\n3. Add eggs and flour\n4. Bake until fudgy",
+      "orderLink": "https://www.swiggy.com/search?query=chocolate+brownie",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+chocolate+brownie"
+    },
+    {
+      "name": "Warm Brown Sugar Pudding",
+      "description": "Soft, warm pudding — gentle and soothing for low moods.",
+      "recipe": "1. Mix milk, sugar and custard powder\n2. Cook until thick\n3. Serve warm with a sprinkle of cinnamon",
+      "orderLink": "https://www.swiggy.com/search?query=hot+pudding",
+      "youtubeLink": "https://www.youtube.com/results?search_query=warm+brown+sugar+pudding+recipe"
+    },
+    {
+      "name": "Salted Caramel Ice Cream",
+      "description": "Sweet with a slight salt edge — small joy in every scoop.",
+      "recipe": "1. Make caramel\n2. Mix with cream and churn\n3. Freeze until set",
+      "orderLink": "https://www.swiggy.com/search?query=salted+caramel+ice+cream",
+      "youtubeLink": "https://www.youtube.com/results?search_query=salted+caramel+ice+cream+recipe"
+    }
+  ],
+  "stressed": [
+    {
+      "name": "Ice Cream Sundae",
+      "description": "Cool and indulgent — quick stress relief in a bowl.",
+      "recipe": "1. Scoop vanilla ice cream\n2. Add chocolate sauce\n3. Top with nuts\n4. Add whipped cream",
+      "orderLink": "https://www.swiggy.com/search?query=ice+cream+sundae",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+ice+cream+sundae"
+    },
+    {
+      "name": "Chocolate Chip Cookies",
+      "description": "Warm cookies — crunchy edges and soft centers for a calming snack.",
+      "recipe": "1. Cream butter and sugar\n2. Add flour and chips\n3. Bake until golden",
+      "orderLink": "https://www.swiggy.com/search?query=chocolate+chip+cookies",
+      "youtubeLink": "https://www.youtube.com/results?search_query=chocolate+chip+cookies+recipe"
+    },
+    {
+      "name": "Matcha Latte Cake",
+      "description": "A gentle, uplifting cake with subtle sweetness and calming matcha notes.",
+      "recipe": "1. Mix matcha powder into batter\n2. Bake and cool\n3. Serve with a dusting of matcha",
+      "orderLink": "https://www.swiggy.com/search?query=matcha+cake",
+      "youtubeLink": "https://www.youtube.com/results?search_query=matcha+cake+recipe"
+    }
+  ],
+  "energetic": [
+    {
+      "name": "Energy Balls",
+      "description": "No-bake bites packed with nuts and oats for a quick boost.",
+      "recipe": "1. Mix dates and nuts\n2. Add oats and honey\n3. Roll into balls\n4. Chill and serve",
+      "orderLink": "https://www.swiggy.com/search?query=energy+balls",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+energy+balls"
+    },
+    {
+      "name": "Peanut Butter Banana Toast",
+      "description": "Quick, sweet, and energizing — great pre-workout snack.",
+      "recipe": "1. Toast bread\n2. Spread peanut butter\n3. Top with banana slices and honey",
+      "orderLink": "https://www.swiggy.com/search?query=peanut+butter+banana+toast",
+      "youtubeLink": "https://www.youtube.com/results?search_query=peanut+butter+banana+toast+recipe"
+    },
+    {
+      "name": "Granola Parfait",
+      "description": "Crunchy granola, yogurt and fruit — long-lasting energy and yummy textures.",
+      "recipe": "1. Layer yogurt, granola and berries\n2. Drizzle honey\n3. Serve chilled",
+      "orderLink": "https://www.swiggy.com/search?query=granola+parfait",
+      "youtubeLink": "https://www.youtube.com/results?search_query=granola+parfait+recipe"
+    }
+  ],
+  "sleepy": [
+    {
+      "name": "Warm Cookies",
+      "description": "Soft, warm cookies to wind down the day.",
+      "recipe": "1. Mix butter and sugar\n2. Add flour and chocolate chips\n3. Bake until golden\n4. Serve warm",
+      "orderLink": "https://www.swiggy.com/search?query=chocolate+chip+cookies",
+      "youtubeLink": "https://www.youtube.com/results?search_query=how+to+make+chocolate+chip+cookies"
+    },
+    {
+      "name": "Warm Milk with Honey",
+      "description": "Simple and soothing — a gentle nightcap to calm you down.",
+      "recipe": "1. Warm milk\n2. Stir in honey and a pinch of cinnamon\n3. Sip slowly",
+      "orderLink": "https://www.swiggy.com/search?query=warm+milk+honey",
+      "youtubeLink": "https://www.youtube.com/results?search_query=warm+milk+with+honey+recipe"
+    },
+    {
+      "name": "Chamomile Tea and Biscotti",
+      "description": "Light, calming tea with a small biscotti for texture.",
+      "recipe": "1. Brew chamomile tea\n2. Serve with a small biscotti\n3. Enjoy slowly",
+      "orderLink": "https://www.swiggy.com/search?query=chamomile+tea",
+      "youtubeLink": "https://www.youtube.com/results?search_query=chamomile+tea+benefits"
+    }
+  ]
+}
