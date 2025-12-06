@@ -26,7 +26,7 @@ async function callServerlessAnalyze(endpoint: string, journalEntry: string, moo
 export const getInitialSuggestions = (mood: string): MoodAnalysis => {
   const allSuggestions: FoodSuggestion[] = (foodSuggestions as Record<string, FoodSuggestion[]>)[mood] || [];
   const shuffled = [...allSuggestions].sort(() => Math.random() - 0.5);
-  let selectedSuggestions = shuffled.slice(0, 3);
+  const selectedSuggestions = shuffled.slice(0, 3);
   // If we don't have enough suggestions for this mood, supplement from other moods
   if (selectedSuggestions.length < 3) {
     const otherPools = Object.keys(foodSuggestions).reduce((acc: FoodSuggestion[], k) => {
@@ -62,9 +62,10 @@ export const analyzeMood = async (journalEntry: string, mood: string): Promise<M
     // Add a simple in-memory cache per runtime to avoid repeated calls for identical inputs
     try {
       const cacheKey = `api:analyze:${mood}:${String(journalEntry).slice(0,200)}`;
-      // @ts-ignore: attach cache to module (safe in single-process dev)
-      if (!(global as any).__apiCache) (global as any).__apiCache = new Map();
-      const gc: Map<string, any> = (global as any).__apiCache;
+      // @ts-expect-error: attach cache to module (safe in single-process dev)
+      if (!global.__apiCache) global.__apiCache = new Map();
+      // @ts-expect-error: using global cache
+      const gc: Map<string, { ts: number; value: MoodAnalysis }> = global.__apiCache;
       const cached = gc.get(cacheKey);
       const now = Date.now();
       if (cached && now - cached.ts < (Number(process.env.API_CACHE_TTL_MS) || 1000 * 60 * 30)) {

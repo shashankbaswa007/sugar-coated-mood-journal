@@ -5,7 +5,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       const stored = localStorage.getItem(key);
       return stored ? (JSON.parse(stored) as T) : initialValue;
-    } catch (e) {
+    } catch {
       return initialValue;
     }
   });
@@ -13,7 +13,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   useEffect(() => {
     try {
       localStorage.setItem(key, JSON.stringify(state));
-    } catch (e) {
+    } catch {
       // swallow
     }
   }, [key, state]);

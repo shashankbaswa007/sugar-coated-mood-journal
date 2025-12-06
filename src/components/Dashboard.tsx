@@ -17,8 +17,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
-  Radar,
-  Legend
+  Radar
 } from 'recharts';
 
 // Mood configuration with colors and emojis
