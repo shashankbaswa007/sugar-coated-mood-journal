@@ -52,13 +52,18 @@ npm run build
 2. **Deploy to Vercel**:
    - Visit [vercel.com](https://vercel.com)
    - Import your GitHub repository
-   - Configure environment variables in Vercel dashboard:
-     - `REACT_APP_USE_MOCK` = `false`
-     - `REACT_APP_USE_GROK` = `false`
+   - Vercel will automatically detect it's a React app
    
-3. **Configure Serverless Function** (if using Gemini API):
-   - Add `GEMINI_API_KEY` to Vercel environment variables
-   - Ensure `serverless/geminiProxy.js` is deployed as a serverless function
+3. **Configure Environment Variables** in Vercel dashboard:
+   - `GEMINI_API_KEY` = Your Gemini API key (Required for AI features)
+   - `REACT_APP_USE_MOCK` = `false` (Optional, to use real API)
+   
+4. **Deploy**:
+   - Click "Deploy"
+   - Vercel will automatically:
+     - Build your React app (`npm run build`)
+     - Deploy the serverless function at `/api/analyze`
+     - Set up automatic deployments for future commits
 
 ### Option 2: Deploy to Netlify
 
