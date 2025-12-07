@@ -2,6 +2,7 @@ import { MoodAnalysis, Meme, FoodSuggestion } from '../types';
 
 // Feature flags
 const USE_MOCK = process.env.REACT_APP_USE_MOCK !== 'false';
+console.log('Gemini Service - USE_MOCK:', USE_MOCK, 'REACT_APP_USE_MOCK:', process.env.REACT_APP_USE_MOCK);
 
 import moodResponses from '../data/moodResponses.json';
 import moodPoetry from '../data/poetry.json';
@@ -13,13 +14,21 @@ import playlists from '../data/playlists.json';
 export const moodSpotifyPlaylists: Record<string, string> = playlists as Record<string, string>;
 
 async function callServerlessAnalyze(endpoint: string, journalEntry: string, mood: string) {
+  console.log(`Calling ${endpoint} with mood: ${mood}`);
   const resp = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text: journalEntry, mood })
   });
-  if (!resp.ok) throw new Error(`Serverless analyze failed: ${resp.status}`);
-  return resp.json();
+  console.log(`Response status: ${resp.status}`);
+  if (!resp.ok) {
+    const errorText = await resp.text();
+    console.error(`Serverless analyze failed: ${resp.status}`, errorText);
+    throw new Error(`Serverless analyze failed: ${resp.status}`);
+  }
+  const data = await resp.json();
+  console.log('Received data from API:', data);
+  return data;
 }
 
 // Get immediate hard-coded suggestions (synchronous, no API call)
@@ -91,11 +100,14 @@ export const analyzeMood = async (journalEntry: string, mood: string): Promise<M
 
 // Get fresh AI-generated suggestions without caching (for refresh button)
 export const getRefreshSuggestions = async (journalEntry: string, mood: string): Promise<MoodAnalysis> => {
+  console.log('getRefreshSuggestions called - USE_MOCK:', USE_MOCK, 'mood:', mood);
   if (!USE_MOCK) {
     try {
       // Call the backend endpoint without caching to get fresh suggestions
       const endpoint = '/api/analyze';
+      console.log('Calling API endpoint:', endpoint);
       const serverResp = await callServerlessAnalyze(endpoint, journalEntry, mood);
+      console.log('Successfully received fresh suggestions from API');
       return serverResp as MoodAnalysis;
     } catch (err) {
       console.warn('API refresh failed, falling back to local suggestions', err);
@@ -105,6 +117,7 @@ export const getRefreshSuggestions = async (journalEntry: string, mood: string):
   }
 
   // In mock mode, return hard-coded suggestions
+  console.log('Mock mode - returning shuffled suggestions');
   return getInitialSuggestions(mood);
 };
 
